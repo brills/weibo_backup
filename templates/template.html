@@ -1,0 +1,102 @@
+<html lang="zh_CN">
+  <head>
+    <meta charset="utf-8">
+	<title>Your Weibo Backup</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <style type="text/css">
+      body {
+        padding-top: 60px;
+        padding-bottom: 40px;
+      }
+    </style>
+    <link href="css/bootstrap-responsive.css" rel="stylesheet">
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <!-- Le fav and touch icons -->
+    <link rel="shortcut icon" href="/ico/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/ico/apple-touch-icon-144-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/ico/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/ico/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="/ico/apple-touch-icon-57-precomposed.png">
+  </head>
+
+  <body>
+
+    <div class="container">
+		<div class="page-header offset2">
+			<h1> Weibo Backup</h1>
+		</div>
+		<div class="row">
+			<div class="span8 offset2">
+			<table class="table table-striped">
+				{% for wb in weibo_list %}
+					<thread>
+						<tr>
+							<th>
+								{{ wb.time }}, 来自{{ wb.from_client }}
+							</th>
+						</tr>
+					</thread>
+						<tbody>
+							{% if wb.fwd_from %}
+							<tr><td>
+									{{ wb.fwd_reason }}
+							</td></tr>
+							<tr><td>
+									<blockquote>
+										<p>{{ wb.contents }}</p>
+										<small>{{ wb.fwd_from }}</small>
+										</blockquote>
+							</td></tr>
+							{% else %}
+							<tr><td>
+									{{ wb.contents }}
+							</td></tr>
+							{% endif %}
+							{% if wb.pic %}
+							<tr><td>
+									<img style="max-width: 480px" src="{{ wb.pic }}"> 
+							</td></tr>
+							{% endif %}
+						</tbody>
+				{% endfor %}
+			</table>
+
+		</div>
+		</div>
+
+      <hr>
+
+	  <footer>
+	  <div class="row">
+		  <div class="span8">
+			  <!-- <div class="pull-right"> -->
+				  <p><i>Author: Brills</i></p>
+				  <!--</div>-->
+		  </div>
+	  </div>
+	  </footer>
+
+    </div> <!-- /container -->
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+	<!-- <script src="/js/bootstrap.js"></script> -->
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap-collapse.js"></script>
+
+  </body>
+</html>
+
+
+
