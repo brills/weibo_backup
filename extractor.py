@@ -20,11 +20,9 @@ def purge(soup):
 	l = soup.find_all('div',attrs = {'class':'c'})
 	
 	for c in l:
-	#	print c.prettify()
 		#purge function links
 		garbage = c.find_all('a', attrs = {'href':cr_del})
-		for g in garbage: 
-			g.decompose()
+		map(lambda(x): x.decompose(), garbage)
 
 		#purge non-weibo c-class
 		if len(c.find_all('div')) == 0:
